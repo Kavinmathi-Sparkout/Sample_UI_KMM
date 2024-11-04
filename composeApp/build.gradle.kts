@@ -38,11 +38,14 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
         }
     }
 }
