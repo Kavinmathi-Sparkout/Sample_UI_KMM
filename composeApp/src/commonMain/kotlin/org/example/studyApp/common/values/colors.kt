@@ -12,4 +12,8 @@ object colors {
     val primaryGradient = Brush.horizontalGradient(
         colors = listOf(gradient_green, gradient_blue)
     )
+
+    val green = Color(0xFF00d3b6)
+    val blue = Color(0xFF00cac4)
+
 }
