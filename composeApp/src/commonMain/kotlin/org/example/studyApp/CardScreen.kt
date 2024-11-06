@@ -330,7 +330,7 @@ fun CardScreen (innerPadding: PaddingValues,
         ) {
             Column (
                 modifier = Modifier.fillMaxWidth()
-                    .background( colors.green)
+                    .background( colors.green.copy(alpha = 0.4f))
                     .padding(20.dp),
             ) {
 

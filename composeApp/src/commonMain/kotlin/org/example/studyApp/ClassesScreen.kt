@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -34,10 +33,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kmp_sample_ui_design.composeapp.generated.resources.Res
 import kmp_sample_ui_design.composeapp.generated.resources.maths
-import kotlinx.coroutines.launch
 import org.example.studyApp.common.values.colors
 import org.example.studyApp.common.values.string
-import org.jetbrains.compose.resources.imageResource
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -47,6 +45,7 @@ fun ClassesScreen(navController: NavController) {
             .fillMaxSize()
             .background(colors.black),
     ) {
+        // Header Row
         Row(
             modifier = Modifier
                 .background(colors.primaryGradient)
@@ -59,16 +58,17 @@ fun ClassesScreen(navController: NavController) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "Back",
-                tint = Color.White
+                tint = Color.White,
+                modifier = Modifier.size(30.dp)
+                    .clickable {
+                        navController.popBackStack()
+                    }
             )
-            // Title
             Text(
                 text = string.CLASSES,
                 color = Color.White,
                 style = MaterialTheme.typography.h6
             )
-
-            // Profile Icon
             Icon(
                 imageVector = Icons.Filled.AccountCircle,
                 contentDescription = "Profile Picture",
@@ -77,97 +77,143 @@ fun ClassesScreen(navController: NavController) {
                     .clickable { /* Handle profile click */ },
                 tint = Color.White
             )
-
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Card(
-            modifier = Modifier.fillMaxWidth()
-                .height(150.dp)
+        // Class Cards
+        ClassCard(
+            imageRes = Res.drawable.maths,
+            title = string.TUTORIALS,
+            subtitle = string.MATHS_101,
+            time = string.TIME_9,
+            schedule = string.EVERY_MONDAY,
+            cardColor = colors.green // Green
+        )
+        ClassCard(
+            imageRes = Res.drawable.maths,
+            title = string.WORKSHOPS,
+            subtitle = string.SCIENCE_101,
+            time = string.TIME_11,
+            schedule = string.EVERY_TUESDAY,
+            cardColor = colors.blue // Blue
+        )
+        ClassCard(
+            imageRes = Res.drawable.maths,
+            title = string.LECTURES,
+            subtitle = string.HISTORY_101,
+            time = string.TIME_10,
+            schedule = string.EVERY_WEDNESDAY,
+            cardColor = colors.blue// Blue
+        )
+        ClassCard(
+            imageRes = Res.drawable.maths,
+            title = string.SESSIONS,
+            subtitle = string.ART_101,
+            time = string.TIME_2,
+            schedule = string.EVERY_THURSDAY,
+            cardColor = colors.green // Green
+        )
+    }
+}
+
+@Composable
+fun ClassCard(
+    imageRes: DrawableResource,
+    title: String,
+    subtitle: String,
+    time: String,
+    schedule: String,
+    cardColor: Color
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp)
+            .padding(10.dp),
+        elevation = 10.dp,
+        shape = RoundedCornerShape(10.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(cardColor)
                 .padding(10.dp),
-            elevation = 10.dp,
-            shape = RoundedCornerShape(10.dp)
+            horizontalArrangement = Arrangement.Start
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .background(colors.green)
-                    .padding(10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+            // Image Card
+            Card(
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(120.dp),
+                shape = RoundedCornerShape(15.dp),
+                elevation = 5.dp
             ) {
-                // Card for Image
-                Card(
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(120.dp),
-                    shape = RoundedCornerShape(15.dp),
-                    elevation = 5.dp
-                ) {
-                    Image(
-                        painter = painterResource(Res.drawable.maths),
-                        contentDescription = "Maths Image",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
+                Image(
+                    painter = painterResource(imageRes),
+                    contentDescription = "$title Image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
 
-                Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(20.dp))
 
-                Column(
-                    modifier = Modifier.wrapContentWidth()
-                ) {
-                    Text(
-                        text = string.TUTORIALS,
-                        fontSize = 12.sp,
-                        color = Color.White
-                    )
+            // Text Content
+            Column(
+                modifier = Modifier.wrapContentWidth()
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 12.sp,
+                    color = Color.White
+                )
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(25.dp))
 
-                    Text(
-                        text = string.MATHS_101,
-                        fontSize = 14.sp,
-                        color = Color.White
-                    )
+                Text(
+                    text = subtitle,
+                    fontSize = 14.sp,
+                    color = Color.White
+                )
 
-                    Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(5.dp))
 
-                    Text(
-                        text = string.TIME_9,
-                        fontSize = 12.sp,
-                        color = Color.White
-                    )
+                Text(
+                    text = time,
+                    fontSize = 12.sp,
+                    color = Color.White
+                )
 
-                    Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(5.dp))
 
-                    Text(
-                        text = string.EVERY_MONDAY,
-                        fontSize = 12.sp,
-                        color = Color.White
-                    )
-                }
+                Text(
+                    text = schedule,
+                    fontSize = 12.sp,
+                    color = Color.White
+                )
+            }
 
-                Spacer(modifier = Modifier.width(5.dp))
+            Spacer(modifier = Modifier.width(75.dp))
 
-                Column(
-                    modifier = Modifier
-                        .wrapContentWidth()
-                ) {
-                    Text(
-                        text = string.CLASSES,
-                        fontSize = 12.sp,
-                        color = Color.White
-                    )
+            // Notification Column
+            Column(
+                modifier = Modifier.wrapContentWidth()
+            ) {
+                Text(
+                    text = string.CLASSES,
+                    fontSize = 12.sp,
+                    color = Color.White
+                )
 
-                    Spacer(modifier = Modifier.height(60.dp))
+                Spacer(modifier = Modifier.height(60.dp))
 
-                    Icon(
-                        imageVector = Icons.Filled.Notifications,
-                        contentDescription = "Notification",
-                        tint = Color.White
-
-                    )
-                }
+                Icon(
+                    imageVector = Icons.Filled.Notifications,
+                    contentDescription = "Notification",
+                    tint = Color.White,
+                    modifier = Modifier.size(20.dp)
+                )
             }
         }
     }
