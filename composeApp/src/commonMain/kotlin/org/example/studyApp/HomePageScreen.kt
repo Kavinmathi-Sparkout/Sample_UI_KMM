@@ -133,7 +133,7 @@ fun HomePageScreen(navController: NavController) {
                                     "Homework" -> { navController.navigate("homework") }
                                     "Exams" -> { navController.navigate("exams") }
                                     "Teachers" -> { navController.navigate("teachers")}
-                                    "Grades" -> { navController.navigate("grades") }
+                                    "Grades" -> { navController.navigate("grade") }
                                     "Messages" -> {navController.navigate("messages") }
                                 }
                             },
