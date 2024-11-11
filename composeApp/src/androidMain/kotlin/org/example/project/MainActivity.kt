@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import org.example.MobileApp.common.navigation.WelcomeNavGraph
 import org.example.calculatorApp.CalculatorScreen
 import org.example.studyApp.HomePageScreen
 import org.example.studyApp.common.navigation.AppNavGraph
@@ -15,8 +16,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-           AppNavGraph()
+//           AppNavGraph()
 //            CalculatorScreen()
+            WelcomeNavGraph()
         }
     }
 }
