@@ -33,15 +33,15 @@ fun AppBar(navController: NavController) {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp),
+                .height(280.dp),
             contentScale = ContentScale.Crop
         )
 
         Icon(
             imageVector = Icons.Default.ArrowBack, // Use the default arrow back icon
             contentDescription = "Back",
-            tint = Color.White, // Set the color of the icon
-            modifier = Modifier.align(Alignment.TopStart).padding(top = 16.dp).clickable {
+            tint = Color.Black, // Set the color of the icon
+            modifier = Modifier.padding(16.dp).align(Alignment.TopStart).clickable {
                 navController.popBackStack() // Navigate back to the previous screen
             }
         )

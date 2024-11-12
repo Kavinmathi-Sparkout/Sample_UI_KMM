@@ -3,6 +3,7 @@ package org.example.MobileApp
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.indication
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -118,7 +119,8 @@ fun WelcomeCard(navController: NavController) {
                 shape = RoundedCornerShape(50),
                 border = BorderStroke(1.dp,colors.pink),
                 colors = ButtonDefaults.outlinedButtonColors(
-                    backgroundColor = Color.Transparent
+                    backgroundColor = Color.Transparent,
+                    contentColor = colors.pink, // Color of the text and icon
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
