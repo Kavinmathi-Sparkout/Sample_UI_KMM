@@ -53,7 +53,7 @@ fun TermsAndConditionScreen(navController: NavController) {
         // Button that is enabled only when both checkboxes are selected
         Button(
             onClick = {
-                // Handle the button click logic (e.g., navigate to the next screen)
+                navController.navigate("notification")
             },
             enabled = isTermsChecked && isPolicyChecked,
             modifier = Modifier

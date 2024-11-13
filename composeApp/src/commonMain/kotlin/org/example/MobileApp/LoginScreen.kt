@@ -202,7 +202,7 @@ fun LoginCard(navController: NavController) {
                 // Log In Button
                 Button(
                     onClick = {
-                        navController.navigate("phoneNumber")
+                        navController.navigate("home")
                     },
                     modifier = Modifier
                         .fillMaxWidth()
