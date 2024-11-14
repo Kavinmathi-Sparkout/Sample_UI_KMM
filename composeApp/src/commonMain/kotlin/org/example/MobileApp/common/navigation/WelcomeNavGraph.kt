@@ -1,22 +1,25 @@
 package org.example.MobileApp.common.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.example.MobileApp.AboutScreen
-import org.example.MobileApp.FillProfileScreen
-import org.example.MobileApp.HomeScreen
-import org.example.MobileApp.LoginScreen
-import org.example.MobileApp.NotificationScreen
-import org.example.MobileApp.OTPScreen
-import org.example.MobileApp.OnboardingScreen
-import org.example.MobileApp.PasswordScreen
-import org.example.MobileApp.PhoneNumberScreen
-import org.example.MobileApp.ShopScreen
-import org.example.MobileApp.SignupScreen
-import org.example.MobileApp.TermsAndConditionScreen
-import org.example.MobileApp.WelcomeScreen
+import androidx.navigation.navArgument
+import org.example.MobileApp.ui.AboutScreen
+import org.example.MobileApp.ui.CartScreen
+import org.example.MobileApp.ui.FillProfileScreen
+import org.example.MobileApp.ui.HomeScreen
+import org.example.MobileApp.ui.LoginScreen
+import org.example.MobileApp.ui.NotificationScreen
+import org.example.MobileApp.ui.OTPScreen
+import org.example.MobileApp.ui.OnboardingScreen
+import org.example.MobileApp.ui.PasswordScreen
+import org.example.MobileApp.ui.PhoneNumberScreen
+import org.example.MobileApp.ui.ShopScreen
+import org.example.MobileApp.ui.SignupScreen
+import org.example.MobileApp.ui.TermsAndConditionScreen
+import org.example.MobileApp.ui.WelcomeScreen
 
 @Composable
 fun WelcomeNavGraph() {
@@ -36,12 +39,28 @@ fun WelcomeNavGraph() {
             val source = backStackEntry.arguments?.getString("source")
             OnboardingScreen(navController = navController, source = source)
         }
-        composable("password") {PasswordScreen(navController)}
-        composable("terms_conditions") {TermsAndConditionScreen(navController)}
+        composable("password") { PasswordScreen(navController) }
+        composable("terms_conditions") { TermsAndConditionScreen(navController) }
         composable("notification"){ NotificationScreen(navController) }
         composable("fillProfile"){ FillProfileScreen(navController) }
         composable("home"){ HomeScreen(navController) }
         composable("shop"){ ShopScreen(navController) }
         composable("about"){ AboutScreen(navController) }
+        composable("cart"){ CartScreen(navController) }
+        /*composable(
+            route = "cart_screen/{productTitle}/{productPrice}/{imageRes}",
+            arguments = listOf(
+                navArgument("productTitle") { type = NavType.StringType },
+                navArgument("productPrice") { type = NavType.FloatType },
+                navArgument("imageRes") { type = NavType.StringType } // Passing image resource name as a String
+            )
+        ) { backStackEntry ->
+            val productTitle = backStackEntry.arguments?.getString("productTitle")
+            val productPrice = backStackEntry.arguments?.getFloat("productPrice")
+            val imageResName = backStackEntry.arguments?.getString("imageRes") ?: ""
+
+            CartScreen(productTitle, productPrice, imageResName)
+        }
+*/
     }
 }

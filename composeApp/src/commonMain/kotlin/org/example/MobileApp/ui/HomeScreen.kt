@@ -1,4 +1,4 @@
-package org.example.MobileApp
+package org.example.MobileApp.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,7 +23,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -39,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kmp_sample_ui_design.composeapp.generated.resources.Res
-import kmp_sample_ui_design.composeapp.generated.resources.background
 import kmp_sample_ui_design.composeapp.generated.resources.logo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -65,7 +63,6 @@ fun HomeScreen(navController: NavController) {
         }
         // Navigation Drawer (Overlays on top when open)
         NavigationDrawer(navController, drawerState, scope)
-
     }
 }
 
@@ -77,6 +74,7 @@ fun MainHomeContent() {
             .fillMaxSize()
             .padding(vertical = 60.dp, horizontal = 16.dp) // Adjust the padding based on your header height
             .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         // Your main content goes here
@@ -123,7 +121,7 @@ fun NavigationDrawer(
     scope: CoroutineScope
 ) {
     // Set the constant title
-    val title = "FASHION_BRAND"
+    val title = string.FASHION_BRAND
 
     Box(modifier = Modifier.fillMaxSize()) {
         // Top bar with fixed title and menu icon
@@ -188,7 +186,7 @@ fun NavigationDrawer(
                     Spacer(modifier = Modifier.height(30.dp))
 
                     // Drawer Items with reduced font size
-                    listOf("Home", "Shop", "About", "Contact").forEach { item ->
+                    listOf("Home", "Shop","Cart","About", "Contact").forEach { item ->
                         Text(
                             text = item,
                             color = Color.Black,
@@ -200,6 +198,9 @@ fun NavigationDrawer(
                                 .clickable {
                                     scope.launch { drawerState.close() }
                                     navController.navigate(item.lowercase()) // Navigate to corresponding screen
+                                    /*{
+                                        popUpTo("shop") { inclusive = true }  // This will clear all screens above shop_screen
+                                    }*/
                                 }
                         )
                         Spacer(modifier = Modifier.height(15.dp)) // Reduced spacing between items

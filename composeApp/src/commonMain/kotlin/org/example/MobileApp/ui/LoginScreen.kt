@@ -1,4 +1,4 @@
-package org.example.MobileApp
+package org.example.MobileApp.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,10 +23,7 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Icon
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -55,48 +52,45 @@ import org.example.MobileApp.common.values.string
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun SignupScreen (navController: NavController) {
+fun LoginScreen(navController: NavController) {
 
-    LazyColumn(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
-        item {
-            // Background Image outside of LazyColumn
-            Image(
-                painter = painterResource(Res.drawable.background), // Replace with your background resource
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(250.dp),
-                contentScale = ContentScale.Crop
-            )
+        // Background Image outside of LazyColumn
+        Image(
+            painter = painterResource(Res.drawable.background), // Replace with your background resource
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            contentScale = ContentScale.Crop
+        )
 
-            SignupCard(navController)
-        }
+        LoginCard(navController)
     }
 }
 
 @Composable
-fun SignupCard(navController: NavController) {
-    var createPasswordVisible by remember { mutableStateOf(false) } // Track password visibility
-    var confirmPasswordVisible by remember { mutableStateOf(false) } // Track password visibility
-    var fullName by remember { mutableStateOf("") } // Email state
+fun LoginCard(navController: NavController) {
+
+    var passwordVisible by remember { mutableStateOf(false) } // Track password visibility
     var email by remember { mutableStateOf("") } // Email state
-    var userName by remember { mutableStateOf("") } // Email state
-    var createPassword by remember { mutableStateOf("") } // Password state
-    var confirmPassword by remember { mutableStateOf("") } // Password state
+    var password by remember { mutableStateOf("") } // Password state
+    var isRememberMeChecked by remember { mutableStateOf(false) } // Checkbox state
 
 
     // LazyColumn for Login Card and other items
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top // Adjusted to top alignment
     ) {
+        item {
             Column(
                 modifier = Modifier
                     .padding(16.dp) // Reduced padding for tighter layout
@@ -104,43 +98,19 @@ fun SignupCard(navController: NavController) {
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    text = string.SIGN_UP,
+                    text = string.LOGIN,
                     style = MaterialTheme.typography.h5,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.align(Alignment.CenterHorizontally) // Center this text
                 )
                 Text(
-                    text = string.CREATE_AN_ACCOUNT,
+                    text = string.ENTER_YOUR_DETAILS_TO_CONTINUE,
                     style = MaterialTheme.typography.body2,
                     color = Color.Gray,
                     modifier = Modifier.padding(top = 8.dp, bottom = 24.dp).align(Alignment.CenterHorizontally) // Center this text
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
-
-                Text(
-                    text = string.FULL_NAME,
-                    color = Color.Black
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Email TextField
-                OutlinedTextField(
-                    value = fullName,
-                    onValueChange = { fullName = it }, // Update email state
-                    label = { Text(string.FULL_NAME) },
-                    trailingIcon = { Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(20.dp)) },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = colors.pink,
-                        focusedLabelColor = colors.pink
-                    )// This will apply rounded corners to the entire field
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
                     text = string.ENTER_YOUR_EMAIL,
@@ -166,33 +136,8 @@ fun SignupCard(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-
                 Text(
-                    text = string.USER_NAME,
-                    color = Color.Black
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Email TextField
-                OutlinedTextField(
-                    value = userName,
-                    onValueChange = { userName = it }, // Update email state
-                    label = { Text(string.USER_NAME) },
-                    trailingIcon = { Icon(Icons.Default.AccountBox, contentDescription = null, modifier = Modifier.size(20.dp)) },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = colors.pink,
-                        focusedLabelColor = colors.pink
-                    )// This will apply rounded corners to the entire field
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = string.CREATE_PASSWORD,
+                    text = string.ENTER_YOUR_PASSWORD,
                     color = Color.Black
                 )
 
@@ -200,51 +145,20 @@ fun SignupCard(navController: NavController) {
 
                 // Password TextField
                 OutlinedTextField(
-                    value = createPassword,
-                    onValueChange = { createPassword = it }, // Update password state
-                    label = { Text(string.CREATE_PASSWORD) },
+                    value = password,
+                    onValueChange = { password = it }, // Update password state
+                    label = { Text(string.ENTER_YOUR_PASSWORD) },
                     trailingIcon = {
-                        IconButton(onClick = { createPasswordVisible = !createPasswordVisible }) {
+                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(
-                                painter = painterResource(if (createPasswordVisible) Res.drawable.eye_open else Res.drawable.eye_close),
+                                painter = painterResource(if (passwordVisible) Res.drawable.eye_open else Res.drawable.eye_close),
                                 contentDescription = null,
                                 modifier = Modifier.size(20.dp) // Set the size of the icon
                             )
                         }
                     },
                     singleLine = true,
-                    visualTransformation = if (createPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(50.dp), // This will apply rounded corners to the entire field
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = colors.pink,
-                        focusedLabelColor = colors.pink
-                    )// This will apply rounded corners to the entire field
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = string.CONFIRM_PASSWORD,
-                    color = Color.Black
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-                // Password TextField
-                OutlinedTextField(
-                    value = confirmPassword,
-                    onValueChange = { confirmPassword = it }, // Update password state
-                    label = { Text(string.CONFIRM_PASSWORD) },
-                    trailingIcon = {
-                        IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
-                            Icon(
-                                painter = painterResource(if (confirmPasswordVisible) Res.drawable.eye_open else Res.drawable.eye_close),
-                                contentDescription = null,
-                                modifier = Modifier.size(20.dp) // Set the size of the icon
-                            )
-                        }
-                    },
-                    singleLine = true,
-                    visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(50.dp), // This will apply rounded corners to the entire field
                     colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -254,13 +168,38 @@ fun SignupCard(navController: NavController) {
 
                 )
 
+                Spacer(modifier = Modifier.height(16.dp))
 
-                Spacer(modifier = Modifier.height(32.dp))
+                // Remember Me and Recover Password Row
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = isRememberMeChecked, // Use state for checked
+                        onCheckedChange = {
+                            isRememberMeChecked = it
+                        }, // Update state on checkbox change
+                        colors = CheckboxDefaults.colors(checkedColor = colors.pink) // Set checked color to pink
+                    )
+                    Text(
+                        text = string.REMEMBER_ME,
+                        style = MaterialTheme.typography.body2,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    TextButton(onClick = { /* Recover password action */ }) {
+                        Text(text = string.RECOVER_PASSWORD)
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
 
                 // Log In Button
                 Button(
                     onClick = {
-                        navController.navigate("phoneNumber")
+                        navController.navigate("shop")
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -268,10 +207,41 @@ fun SignupCard(navController: NavController) {
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = colors.pink) // Replace with your color
                 ) {
-                    Text(text = string.SIGN_UP, color = Color.White)
+                    Text(text = string.LOGIN, color = Color.White)
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
+
+                // Social Media Login Options
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp), // Add bottom padding to reduce space after the icons
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    IconButton(onClick = { /* Google login action */ }) {
+                        Icon(
+                            painterResource(Res.drawable.google),
+                            contentDescription = string.GOOGLE,
+                            modifier = Modifier.size(20.dp)
+                        ) // Replace with Google icon resource
+                    }
+                    IconButton(onClick = { /* Facebook login action */ }) {
+                        Icon(
+                            painterResource(Res.drawable.facebook),
+                            contentDescription = string.FACEBOOK,
+                            modifier = Modifier.size(20.dp)
+                        ) // Replace with Facebook icon resource
+                    }
+                    IconButton(onClick = { /* Twitter login action */ }) {
+                        Icon(
+                            painterResource(Res.drawable.twitter),
+                            contentDescription = string.TWITTER,
+                            modifier = Modifier.size(20.dp)
+                        ) // Replace with Twitter icon resource
+                    }
+                }
             }
+        }
     }
 }
