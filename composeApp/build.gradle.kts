@@ -47,6 +47,9 @@ kotlin {
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
 
+//            implementation ("com.google.accompanist:accompanist-navigation-animation:0.36.0")
+
+            implementation("com.github.skydoves:orbital:0.4.0")
 
         }
     }

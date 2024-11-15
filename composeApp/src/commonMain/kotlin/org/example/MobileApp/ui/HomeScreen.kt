@@ -186,7 +186,7 @@ fun NavigationDrawer(
                     Spacer(modifier = Modifier.height(30.dp))
 
                     // Drawer Items with reduced font size
-                    listOf("Home", "Shop","Cart","About", "Contact").forEach { item ->
+                    listOf("Home", "Shop","Cart","Product","About", "Contact").forEach { item ->
                         Text(
                             text = item,
                             color = Color.Black,
