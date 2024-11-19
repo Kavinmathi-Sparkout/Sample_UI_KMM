@@ -11,7 +11,6 @@ import org.example.MobileApp.ui.CartScreen
 import org.example.MobileApp.ui.DetailTransitionScreen
 import org.example.MobileApp.ui.FillProfileScreen
 import org.example.MobileApp.ui.HomeScreen
-import org.example.MobileApp.ui.HomeTransitionScreen
 import org.example.MobileApp.ui.LoginScreen
 import org.example.MobileApp.ui.NotificationScreen
 import org.example.MobileApp.ui.OTPScreen
@@ -19,6 +18,7 @@ import org.example.MobileApp.ui.OnboardingScreen
 import org.example.MobileApp.ui.PasswordScreen
 import org.example.MobileApp.ui.PhoneNumberScreen
 import org.example.MobileApp.ui.ProductDetailScreen
+import org.example.MobileApp.ui.SharedElementTransitionScreen
 import org.example.MobileApp.ui.ShopScreen
 import org.example.MobileApp.ui.SignupScreen
 import org.example.MobileApp.ui.TermsAndConditionScreen
@@ -68,14 +68,6 @@ fun WelcomeNavGraph() {
 
         composable("product") { ProductDetailScreen(navController) }
 
-        composable("home_transition") { HomeTransitionScreen(navController) }
-        composable("detail_transition/{itemId}") { backStackEntry ->
-            backStackEntry.arguments?.getString("itemId")?.let {
-                DetailTransitionScreen(
-                    navController,
-                    it
-                )
-            }
-        }
+        composable("transition") { SharedElementTransitionScreen() }
     }
 }

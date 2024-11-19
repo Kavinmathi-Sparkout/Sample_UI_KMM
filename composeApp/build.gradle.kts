@@ -51,6 +51,11 @@ kotlin {
 
             implementation("com.github.skydoves:orbital:0.4.0")
 
+            implementation(libs.androidx.compose.animation)
+            implementation(libs.androidx.navigation.compose)
+            implementation ("androidx.annotation:annotation:1.7.0")
+
+
         }
     }
 }
@@ -84,6 +89,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.annotation.jvm)
     debugImplementation(compose.uiTooling)
 }
 

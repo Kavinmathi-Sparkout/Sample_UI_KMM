@@ -1,5 +1,6 @@
 package org.example.MobileApp.ui
 
+/*
 import androidx.compose.animation.core.Transition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -53,4 +54,4 @@ fun HomeTransitionScreen (navController: NavController) {
             }
         }
     }
-}
+}*/
