@@ -55,7 +55,12 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation ("androidx.annotation:annotation:1.7.0")
 
+            //Work Manager
+            implementation("androidx.work:work-runtime-ktx:2.8.0")
 
+            //DataStore
+            api(libs.datastore.preferences)
+            api(libs.datastore)
         }
     }
 }
