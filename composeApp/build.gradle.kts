@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -47,10 +49,8 @@ kotlin {
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
 
-//            implementation ("com.google.accompanist:accompanist-navigation-animation:0.36.0")
-
+            //Shared Element Transition
             implementation("com.github.skydoves:orbital:0.4.0")
-
             implementation(libs.androidx.compose.animation)
             implementation(libs.androidx.navigation.compose)
             implementation ("androidx.annotation:annotation:1.7.0")
@@ -61,6 +61,10 @@ kotlin {
             //DataStore
             api(libs.datastore.preferences)
             api(libs.datastore)
+
+            //Room Database
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
     }
 }
@@ -96,5 +100,13 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.annotation.jvm)
     debugImplementation(compose.uiTooling)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.room.compiler)
 }
 
