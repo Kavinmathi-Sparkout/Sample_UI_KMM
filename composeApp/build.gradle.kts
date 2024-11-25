@@ -65,6 +65,9 @@ kotlin {
             //Room Database
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
+
+            //Multimedia Player
+            implementation("network.chaintech:compose-multiplatform-media-player:1.0.26")
         }
     }
 }
