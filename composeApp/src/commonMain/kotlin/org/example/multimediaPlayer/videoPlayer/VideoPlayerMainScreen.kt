@@ -1,13 +1,17 @@
 package org.example.multimediaPlayer
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
-import network.chaintech.compose.multiplatform.media.player.PlayerConfig
-import androidx.compose.ui.Modifier
+import chaintech.videoplayer.model.PlayerConfig
+import chaintech.videoplayer.ui.video.VideoPlayerView
+import kmp_sample_ui_design.composeapp.generated.resources.Res
+import kmp_sample_ui_design.composeapp.generated.resources.ic_pause
+import kmp_sample_ui_design.composeapp.generated.resources.ic_play
 
 @Composable
 fun VideoPlayerMainScreen() {
@@ -28,8 +32,8 @@ fun VideoPlayerMainScreen() {
                 isAutoHideControlEnabled = true,
                 controlHideIntervalSeconds = 5,
                 isFastForwardBackwardEnabled = true,
-                playIconResource = Res.drawable.icn_play, // Make sure to replace with your actual resource
-                pauseIconResource = Res.drawable.icn_pause  // Make sure to replace with your actual resource
+                playIconResource = Res.drawable.ic_play, // Make sure to replace with your actual resource
+                pauseIconResource = Res.drawable.ic_pause  // Make sure to replace with your actual resource
             )
         )
     }

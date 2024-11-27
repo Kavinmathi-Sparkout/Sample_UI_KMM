@@ -4,8 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import network.chaintech.compose.multiplatform.media.player.ReelsPlayer
-import network.chaintech.compose.multiplatform.media.player.ReelsPlayerState
+
 
 @Composable
 fun ReelsPlayerView(

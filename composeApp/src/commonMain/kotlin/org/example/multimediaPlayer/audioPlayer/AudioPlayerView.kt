@@ -6,9 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import network.chaintech.compose.multiplatform.media.player.AudioPlayer
-import network.chaintech.compose.multiplatform.media.player.AudioPlayerState
-import network.chaintech.compose.multiplatform.media.player.AudioPlayerConfig
+import chaintech.videoplayer.model.AudioFile
+import chaintech.videoplayer.model.AudioPlayerConfig
 
 @Composable
 fun AudioPlayerView(

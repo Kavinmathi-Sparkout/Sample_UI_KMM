@@ -1,13 +1,19 @@
 package org.example.multimediaPlayer.audioPlayer
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
-import network.chaintech.compose.multiplatform.media.player.AudioPlayerConfig
-import androidx.compose.ui.Modifier
+import chaintech.videoplayer.model.AudioFile
+import chaintech.videoplayer.model.AudioPlayerConfig
+import chaintech.videoplayer.model.PlayerConfig
+import chaintech.videoplayer.ui.video.VideoPlayerView
+import kmp_sample_ui_design.composeapp.generated.resources.Res
+import kmp_sample_ui_design.composeapp.generated.resources.ic_pause
+import kmp_sample_ui_design.composeapp.generated.resources.ic_play
 
 @Composable
 fun AudioMainScreen() {
@@ -29,8 +35,8 @@ fun AudioMainScreen() {
                 isAutoHideControlEnabled = true,
                 controlHideIntervalSeconds = 5,
                 isFastForwardBackwardEnabled = true,
-                playIconResource = Res.drawable.icn_play,
-                pauseIconResource = Res.drawable.icn_pause
+                playIconResource = Res.drawable.ic_play,
+                pauseIconResource = Res.drawable.ic_pause
             )
         )
 

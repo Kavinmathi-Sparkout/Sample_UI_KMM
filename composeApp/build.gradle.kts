@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.googleServices)
 }
 
 kotlin {
@@ -68,6 +69,10 @@ kotlin {
 
             //Multimedia Player
             implementation("network.chaintech:compose-multiplatform-media-player:1.0.26")
+
+            //Firebase
+            implementation(libs.firebase.auth)
+            implementation(libs.firebase.auth.ktx)
         }
     }
 }
