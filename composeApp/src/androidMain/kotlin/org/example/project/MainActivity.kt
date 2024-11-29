@@ -10,12 +10,15 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import org.example.database.UserMainActivity
 import org.example.database.getUserDatabase
+import org.example.eventBus.EventBusMainScreen
 import org.example.firebaseAuthentication.AuthenticationScreen
 import org.example.firebaseAuthentication.getAuthManager
 import org.example.localStorage.MainScreen
 import org.example.mobileApp.common.navigation.WelcomeNavGraph
 import org.example.pictureInPicture.PiPScreen
 import org.example.studyApp.HomePageScreen
+import org.example.swipeRefresh.AndroidSwipeRefreshExample
+import org.example.swipeRefresh.DataFetcher
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +28,15 @@ class MainActivity : ComponentActivity() {
         FirebaseAuth.getInstance()
 
         setContent {
-            AuthenticationScreen(authManager = getAuthManager())
-            PiPScreen(this)
+//            EventBusMainScreen()
+
+            //Instance of DataFetcher
+            val dataFetcher = DataFetcher()
+            //Passing the instance to the AndroidSwipeRefreshExample
+            AndroidSwipeRefreshExample(dataFetcher)
+
+            /*AuthenticationScreen(authManager = getAuthManager())
+            PiPScreen(this)*/
 
 //           AppNavGraph()
 //            CalculatorScreen()

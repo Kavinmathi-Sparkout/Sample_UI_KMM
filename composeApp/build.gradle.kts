@@ -39,6 +39,10 @@ kotlin {
 
             //ExoPlayer
             implementation ("androidx.media3:media3-exoplayer:1.0.3")
+
+            //Swipe Refresh
+            implementation("com.google.accompanist:accompanist-swiperefresh:0.32.0")
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -76,6 +80,9 @@ kotlin {
             //Firebase
             implementation(libs.firebase.auth)
             implementation(libs.firebase.auth.ktx)
+
+            //Eventbus
+            implementation("io.github.hoc081098:channel-event-bus:0.1.0")
         }
     }
 }
