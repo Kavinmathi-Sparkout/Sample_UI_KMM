@@ -14,6 +14,7 @@ import org.example.firebaseAuthentication.AuthenticationScreen
 import org.example.firebaseAuthentication.getAuthManager
 import org.example.localStorage.MainScreen
 import org.example.mobileApp.common.navigation.WelcomeNavGraph
+import org.example.pictureInPicture.PiPScreen
 import org.example.studyApp.HomePageScreen
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AuthenticationScreen(authManager = getAuthManager())
+            PiPScreen(this)
 
 //           AppNavGraph()
 //            CalculatorScreen()
